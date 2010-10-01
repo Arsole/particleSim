@@ -1,0 +1,5 @@
+src/*.*.orig
+include/*.*.orig
+src/.*.*.swp
+include/.*.*.swp
+build/*
