@@ -42,6 +42,8 @@ struct particle
     temp p_point; // Plasma point, could use a better name
     uint32_t color;
     unsigned int weight;
+
+    unsigned int type;
 };
 typedef struct particle particle;
 #endif // _PARTICLE_H

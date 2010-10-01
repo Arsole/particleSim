@@ -33,24 +33,18 @@
 #include <list.h>
 #include <screen.h>
 #include <particle.h>
-
+#include <position.h>
 particle * grid[Y_RES][X_RES] = {NULL};
-struct position
-{
-    unsigned int x;
-    unsigned int y;
-};
-typedef struct position position;
 void
 add_element (particle * type)
 {}
 
 void
-construct_particle (const particle * type, const position * pos)
+construct_particle (particle * type, position pos)
 {
     particle * part = malloc (sizeof (particle));
     memcpy (part, type, sizeof (type));
-    grid[pos->y][pos->x] = part;
+    grid[pos.y][pos.x] = part;
 }
 
 
@@ -59,7 +53,29 @@ destroy_particle (particle * part)
 {
     free (part);
 }
+position
+nearest_particle (position pos)
+{
+    int distance = sqrt(pow(XRES, 2)+pow(YRES, 2));
 
+    unsigned int nearest_distance = 0;
+    for (unsigned int y = 0,  y <= Y_RES, y++)
+    {
+        for (unsigned int x = 0, x <= X_RES, x++)
+        {
+            if (grid[y][x]->type == 1)
+            {
+                ndistance = abs (x) + (y));
+                if (ndistance < distance)
+                {
+                    distance = ndistance;
+                    
+                }
+            }
+        }
+    }
+    return 
+}
 int
 main (int argc, char **argv)
 {
@@ -71,6 +87,7 @@ main (int argc, char **argv)
     particle * dust = malloc (sizeof (particle));
     dust->temp_p = 273;
     dust->color = 255+256+256;
+    dust->type = 1;
     position * pos = malloc (sizeof (position));
     pos->x = X_RES/2;
     pos->y = Y_RES/2;
