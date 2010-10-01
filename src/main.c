@@ -3,41 +3,22 @@
 #include <unistd.h>
 #include <pthread.h>
 #include <stdint.h>
+
 #include <temp.h>
+#include <list.h>
+#include <screen.h>
+#include <particle.h>
 
-#define Y_RES 400
-#define X_RES 600
-typedef unsigned int temp;
-struct node
-{
-    struct node * next;
-    particle * type;
-};
-typedef struct node node;
-struct list
-{
-    node * head;
-};
-typedef struct list list;
-
-void add_element (particle * type, 
-struct particle
-{
-    uint32_t mask;
-    temp temp_p;  // Particle temp
-    temp f_point; // Freezing point
-    temp m_point; // Melting point
-    temp b_point; // Boiling point
-    temp p_point; // Plasma point, could use a better name
-    uint32_t color;
-};
-typedef struct particle particle;
+void
+add_element (particle * type)
+{}
 
 particle *
-construct_particle (particle * type)
+construct_particle (const particle * type)
 {
     particle * part = malloc (sizeof (particle));
     memcpy (part, type, sizeof (type));
+    return part;
 }
 
 particle * grid[Y_RES][X_RES] = {NULL};
@@ -59,7 +40,9 @@ main (int argc, char **argv)
     particle * dust = malloc (sizeof (particle));
     dust->temp_p = 273;
     dust->color = 255+256+256;
+    particle * particle2 = construct_particle (dust);
     grid[Y_RES/2][X_RES/2] = construct_particle (dust);
-    printf ("Color of particle: %d", dust->color);
+    printf ("Color of particle: %d\n", dust->color);
+    printf ("temp of particle2: %d\n", particle2->temp_p);
     return 0;
 }
