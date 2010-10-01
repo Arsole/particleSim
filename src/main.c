@@ -56,25 +56,25 @@ destroy_particle (particle * part)
 position
 nearest_particle (position pos)
 {
-    int distance = sqrt(pow(XRES, 2)+pow(YRES, 2));
+    int distance = sqrt(pow(X_RES, 2)+pow(Y_RES, 2));
 
     unsigned int nearest_distance = 0;
-    for (unsigned int y = 0,  y <= Y_RES, y++)
+    for (unsigned int y = 0;  y <= Y_RES; y++)
     {
-        for (unsigned int x = 0, x <= X_RES, x++)
+        for (unsigned int x = 0; x <= X_RES; x++)
         {
             if (grid[y][x]->type == 1)
             {
-                ndistance = abs (x) + (y));
-                if (ndistance < distance)
+                nearest_distance = abs (x) + (y);
+                if (nearest_distance < distance)
                 {
-                    distance = ndistance;
+                    distance = nearest_distance;
                     
                 }
             }
         }
     }
-    return 
+    return pos; 
 }
 int
 main (int argc, char **argv)
@@ -88,9 +88,9 @@ main (int argc, char **argv)
     dust->temp_p = 273;
     dust->color = 255+256+256;
     dust->type = 1;
-    position * pos = malloc (sizeof (position));
-    pos->x = X_RES/2;
-    pos->y = Y_RES/2;
+    position  pos;
+    pos.x = X_RES/2;
+    pos.y = Y_RES/2;
     construct_particle (dust, pos);
     printf ("Color of particle: %d\n", grid[Y_RES/2][X_RES/2]->color); //this is obviously not working
     printf ("temp of particle2: %d\n", grid[Y_RES/2][X_RES/2]->temp_p);
