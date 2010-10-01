@@ -28,7 +28,7 @@
 #include <unistd.h>
 #include <pthread.h>
 #include <stdint.h>
-
+#include <math.h>
 #include <temp.h>
 #include <list.h>
 #include <screen.h>
@@ -43,7 +43,7 @@ void
 construct_particle (particle * type, position pos)
 {
     particle * part = malloc (sizeof (particle));
-    memcpy (part, type, sizeof (type));
+    memcpy (part, type, sizeof (particle));
     grid[pos.y][pos.x] = part;
 }
 
